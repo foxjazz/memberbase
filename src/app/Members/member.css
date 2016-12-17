@@ -16,6 +16,18 @@
 .ng-invalid:not(form) {
     border-left: 5px solid orange; /* orange */
 }
+.form-control{
+    background-color: #1d2528;
+}
+.panel-body{
+    background-color: #1d2528;
+}
+.form-group{
+    background-color: #1d2528;
+}
+.form-inline{
+    background-color: #1d2528;
+}
 
 .clred {
     color: #830000;
