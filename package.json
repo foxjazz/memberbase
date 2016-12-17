@@ -38,7 +38,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/antonybudianto/angular2-starter/issues"
+    "url": "https://github.com/foxjazz/memberbase/issues"
   },
   "dependencies": {
     "@angular/common": "~2.1.2",

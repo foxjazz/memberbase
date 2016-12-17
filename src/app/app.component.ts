@@ -5,6 +5,7 @@ import { CONSTANTS } from './shared';
 @Component({
     moduleId: module.id,
     selector: 'as-main-app',
+    styleUrls: ['app.css'],
     templateUrl: 'app.html'
 })
 export class AppComponent {

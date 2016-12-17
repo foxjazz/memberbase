@@ -1,3 +1,29 @@
 h4 {
 	color: lightseagreen;
 }
+.html{
+	background-color: #1d2528;
+	color: #c4c6fb;
+}
+.realcolor {
+	background-color: #1d2528;
+	color: lightgrey;
+}
+.panel panel-default{
+	background-color: #1d2528;
+	color: lightgrey;
+}
+.fa{
+	background-color: #1d2528;
+}
+
+.fa fa-home{
+	background-color: #1d2528;
+}
+.panel-title{
+	background-color: #1d2528;
+}
+
+.panel-body{
+	background-color: #1d2528;
+}
