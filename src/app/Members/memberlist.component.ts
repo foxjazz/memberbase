@@ -28,6 +28,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         //let m = new Member('',false);
         this.member = new Member('',false, this.memberlist);
         this.member.clear();
+        localStorage.setItem('members', JSON.stringify(this.memberlist));
     }
 
     delMember(i: number) {
@@ -41,10 +42,11 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     }
 
     public onUsingTable ( al: Member) {
-        if(event.target["id"] === "Add")
+        if(event.target["id"] === "select")
         {
-            this.member = new Member('',false,this.memberlist);
-            localStorage.setItem('members', JSON.stringify(this.memberlist));
+            //this.member = new Member('',false,this.memberlist);
+            this.member = al;
+            //localStorage.setItem('members', JSON.stringify(this.memberlist));
 
         }
         if(event.target["id"] === "Payments")

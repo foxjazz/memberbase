@@ -2,7 +2,7 @@
 export interface IPayment {
     receivedDate: Date;
     amount: number;
-
+    type: string;
 }
 export class Member {
 
@@ -20,6 +20,7 @@ export class Member {
     completed: boolean;
     active: boolean;
     durationmonths: number;
+    targetDate: Date;
     payments: Array<IPayment>;
 /*
     static clone(member: Member): Member {

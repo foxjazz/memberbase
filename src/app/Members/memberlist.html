@@ -12,30 +12,32 @@
                     <!--<span [hidden]="member.email.valid" class="badge badge-warning">Required</span>-->
                     <div class="form-inline">
                         <label for="member">Email</label>
-                        <input required [(ngModel)]="member.email" id="member" name="memberName" type="text" class="form-control" size="50">
+                        <input required [(ngModel)]="member.email" id="member" name="memberName" type="text" class="form-control" size="20">
                     </div>
-                    <div>
+                    <div class="form-inline">
                         <label for="fn">First Name</label>
-                        <input required [(ngModel)]="member.firstName" id="fn" name="firstName" type="text" class="form-control" size="50">
+                        <input required [(ngModel)]="member.firstName" id="fn" name="firstName" type="text" class="form-control" size="15">
                         <label for="ln">Last Name</label>
-                        <input required [(ngModel)]="member.lastName" id="ln" name="lastName" type="text" class="form-control" size="50">
+                        <input required [(ngModel)]="member.lastName" id="ln" name="lastName" type="text" class="form-control" size="15">
                     </div>
-                    <div>
+                    <div class="form-inline">
                         <label for="addr">Address</label>
-                        <input required [(ngModel)]="member.address" id="addr" name="address" type="text" class="form-control" size="50">
-                        <label for="city">City</label>
-                        <input required [(ngModel)]="member.city" id="city" name="city" type="text" class="form-control" size="50">
-                        <label for="state">State</label>
-                        <input required [(ngModel)]="member.state" id="state" name="state" type="text" class="form-control" size="50">
-                        <label for="zip">Zip</label>
-                        <input required [(ngModel)]="member.zip" id="zip" name="zip" type="text" class="form-control" size="50">
+                        <input required [(ngModel)]="member.address" id="addr" name="address" type="text" class="form-control" size="30">
                     </div>
-                    <div>
+                    <div class="form-inline">
+                        <label for="city">City</label>
+                        <input required [(ngModel)]="member.city" id="city" name="city" type="text" class="form-control" size="20">
+                        <label for="state">State</label>
+                        <input required [(ngModel)]="member.state" id="state" name="state" type="text" class="form-control" size="5">
+                        <label for="zip">Zip</label>
+                        <input required [(ngModel)]="member.zip" id="zip" name="zip" type="text" class="form-control" size="10">
+                    </div>
+                    <div class="form-inline">
                         <label for="ph">Phone</label>
-                        <input required [(ngModel)]="member.phone" id="ph" name="phone" type="text" class="form-control" size="50">
+                        <input required [(ngModel)]="member.phone" id="ph" name="phone" type="text" class="form-control" size="20">
                     </div>
                     <button type="submit" class="btn btn-primary">Add</button>
-                    <label><input type="checkbox" [(ngModel)]="showCompleted" name="memberCompleted"> show completed</label>
+                    <!--<label><input type="checkbox" [(ngModel)]="showCompleted" name="memberCompleted"> show completed</label>-->
                 </form>
             </div>
         </div>
@@ -59,7 +61,7 @@
                     <td> {{al.lastName}} </td>
                     <label><input type="checkbox" [(ngModel)]="al.active" name="memberDone"> {{al.isActive()}} {{al.active}} </label>
                     <td class="makeroom">  </td>
-                    <td class="price"><button id="new" class="btn">New</button></td>
+                    <td class="price"><button id="select" class="btn">Select</button></td>
                     <td class="price"><button id="remove" class="btn">Remove</button></td>
                     <td class="price"><button id="payments" class="btn">Payments</button></td>
                 </tr>
