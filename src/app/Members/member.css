@@ -162,6 +162,7 @@
 .itemtable tr td{
     padding: .2em;
     max-height: 2em;
+    color: yellow;
 }
 .input-short{
     background-color: #1f2f2f;

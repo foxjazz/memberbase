@@ -28,13 +28,13 @@ export class Member {
     }
 */
 
-    constructor(email: string, done = false, members: Array<Member>) {
+    constructor(email: string, done = false) {
         this.email = email;
         this.completed = done;
         this.joinedDate = new Date();
         this.payments = new Array<IPayment>();
-        members.push(this);
-        this.key = members.length;
+        // members.push(this);
+        // this.key = members.length;
     }
     public delete(){
             this.active = false;

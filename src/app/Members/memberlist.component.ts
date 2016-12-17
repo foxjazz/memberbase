@@ -26,7 +26,10 @@ export class MemberlistComponent implements OnInit, OnDestroy{
 
     addMember() {
         //let m = new Member('',false);
-        this.member = new Member('',false, this.memberlist);
+        this.member = new Member('',false);
+
+        this.memberlist.push(this.member);
+        this.member.key = this.memberlist.length;
         this.member.clear();
         localStorage.setItem('members', JSON.stringify(this.memberlist));
     }
@@ -35,14 +38,14 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         let res: string;
         this.memberlist[i].delete();
 
-        let m = null;
+        //let m = null;
         /*let m = memberlist[i];
         this.memberlist.remove(memberlist[i].email)*/
 
     }
 
     public onUsingTable ( al: Member) {
-        if(event.target["id"] === "select")
+        if(event.target["id"] === "Select")
         {
             //this.member = new Member('',false,this.memberlist);
             this.member = al;
@@ -51,6 +54,11 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
         if(event.target["id"] === "Payments")
         {
+            if(al.payments == null || al.payments.length == 0)
+            {
+                let newpay = {receivedDate: new Date(), amount: 0, type: "cash"};
+                al.payments.push(newpay);
+            }
             this.payments = al.payments;
         }
 
@@ -59,6 +67,20 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
 
 
+    }
+    public onPaymentTable(pay :IPayment){
+        if(event.target["id"]=== "Add")
+        {
+            let newpay = {receivedDate: new Date(), amount: 0, type: "cash"};
+            this.payments.push(newpay);
+        }
+        else if(event.target["id"]==="Delete")
+        {
+            let index = this.payments.indexOf(pay, 0);
+            if (index > -1) {
+                this.payments.splice(index, 1);
+            }
+        }
     }
     ngOnDestroy(){
         localStorage.setItem('members', JSON.stringify(this.memberlist));
