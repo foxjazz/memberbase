@@ -4,6 +4,17 @@ export interface IPayment {
     amount: number;
     type: string;
 }
+export class ExtendedMember{
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+}
+
 export class Member {
 
     key: number;
@@ -21,6 +32,7 @@ export class Member {
     active: boolean;
     durationmonths: number;
     targetDate: Date;
+    ExtendedMembers: Array<ExtendedMember>;
     payments: Array<IPayment>;
 /*
     static clone(member: Member): Member {

@@ -94,7 +94,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
         else{
             this.memberlist = new Array<Member>();
-            this.member = new Member('',false,this.memberlist);
+            this.member = new Member('',false);
         }
 
 

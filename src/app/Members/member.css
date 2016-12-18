@@ -1,4 +1,8 @@
 
+.deal{
+    background-color: #1d2528;
+    color: lightgrey;
+}
 .badge:hover {
     background-color: orangered;
     cursor: pointer;
