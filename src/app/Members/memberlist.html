@@ -1,7 +1,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-list"></i> Member List &nbsp;<span class="badge">{{memberlist.length}} mode: {{mode}} </span>  </h3>
+    <h3 class="panel-title"><i class="fa fa-list"></i> Member List &nbsp;<span class="badge">{{membercount}} mode: {{mode}} </span>  </h3>
       <h3 class="deal"></h3>
   </div>
 
@@ -42,12 +42,11 @@
                         <label for="ph">Phone</label>
                         <input [(ngModel)]="member.phone" id="ph" name="phone" type="text" class="form-control" size="20">
                     </div>
-                    <button type="submit" class="btn btn-primary">Add/Save</button>
+                    <div class="submit">
+                    <button type="submit" class="submit">{{mode}}</button>
+                    </div>
                     <!--<label><input type="checkbox" [(ngModel)]="showCompleted" name="memberCompleted"> show completed</label>-->
                 </form>
-                <div>
-                    mode: {{mode}}
-                </div>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Member, IPayment} from './member.model';
 import {PaymentComponent} from './payment.component';
 
+
 //import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
@@ -17,6 +18,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     payments: Array<IPayment>;
     memberlist: Array<Member>;
     mode = "Add";
+    membercount: number;
     isactive: string;
     private list: Member[];
     private showCompleted: Boolean;
@@ -24,10 +26,12 @@ export class MemberlistComponent implements OnInit, OnDestroy{
   //  memberlist: FirebaseListObservable<any[]>;
     constructor(/*af: AngularFire*/) {
         this.showCompleted = true;
-
+        this.membercount = 0;
     //    this.memberlist = af.database.list('./members');
     }
     getPayments(): Array<IPayment>{
+        if(this.payments == null)
+            this.payments = new Array<IPayment>();
         return this.payments;
     }
 
@@ -96,6 +100,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
             this.member = new Member('',false);
 
         }
+        this.membercount = this.memberlist.length;
 
 
     }

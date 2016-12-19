@@ -10,6 +10,16 @@ import {IPayment} from './member.model';
     styleUrls: ['app/members/member.css']
 })
 export class PaymentComponent {
+    constructor(){
+        if(this.payments == null || this.payments.length === 0){
+            this.pay =  {receivedDate: new Date(), amount: 0, type: "cash", targetDate: new Date(), active: false};
+        }
+        else {
+            this.pay = this.payments[0];
+        }
+
+
+    }
     @Input()
     payments: Array<IPayment>;
     pay: IPayment;
