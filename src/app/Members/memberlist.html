@@ -1,7 +1,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-list"></i> Member List &nbsp;<span class="badge">{{list.length}}  email:{{member.email}}</span>  </h3>
+    <h3 class="panel-title"><i class="fa fa-list"></i> Member List &nbsp;<span class="badge">{{memberlist.length}} mode: {{mode}} </span>  </h3>
       <h3 class="deal"></h3>
   </div>
 
@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
 
-                <form (submit)="addMember()" #memberForm="ngForm">
+                <form (submit)="submitForm()" #memberForm="ngForm">
 
                     <!--<span [hidden]="member.email.valid" class="badge badge-warning">Required</span>-->
                     <div class="form-inline">
@@ -42,9 +42,12 @@
                         <label for="ph">Phone</label>
                         <input [(ngModel)]="member.phone" id="ph" name="phone" type="text" class="form-control" size="20">
                     </div>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add/Save</button>
                     <!--<label><input type="checkbox" [(ngModel)]="showCompleted" name="memberCompleted"> show completed</label>-->
                 </form>
+                <div>
+                    mode: {{mode}}
+                </div>
             </div>
         </div>
     </div>
@@ -65,7 +68,7 @@
 
                     <td> {{al.firstName}} </td>
                     <td> {{al.lastName}} </td>
-                    <label><input type="checkbox" [(ngModel)]="al.active" name="memberDone"> {{al.isActive()}} {{al.active}} </label>
+                    <td>{{al.active}}</td>
                     <td class="makeroom">  </td>
                     <td class="price"><button id="Select" class="btn">Select</button></td>
                     <td class="price"><button id="Remove" class="btn">Remove</button></td>
@@ -80,28 +83,7 @@
             </ul>-->
         </div>
         <div class="col-md-5">
-            <table class="itemtable">
-                <tr>
-                    <th>pay date</th>
-                    <th>amount</th>
-                    <th>active</th>
-                    <th class="makeroom">  </th>
-                    <th>add</th>
-                    <th>remove</th>
-
-
-                </tr>
-                <tr  *ngFor="let pay of payments" [class.itemselected]="item === selectedItem" (click)="onPaymentTable(al)">
-
-                    <td> {{pay.receivedDate}} </td>
-                    <td> ${{pay.amount}} <input type="number" name="amount" [(ngModel)]="pay.amount"></td>
-
-                    <td class="makeroom">  </td>
-                    <td class="price"><button id="add" class="btn">Add</button></td>
-                    <td class="price"><button id="delete" class="btn">Delete</button></td>
-
-                </tr>
-            </table>
+           <as-payment [payments]="getPayments()"></as-payment>
         </div>
     </div>
   </div>

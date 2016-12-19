@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MemberlistComponent } from './index';
-
+import { PaymentComponent } from './payment.component';
  //import { AngularFireModule } from 'angularfire2';
  export const firebaseConfig = {
  apiKey: 'AIzaSyD3UeQygrWX3JWL3o9DWe8c-7r-rF1KD30',
@@ -18,7 +18,7 @@ import { MemberlistComponent } from './index';
  //export const FirebaseModule = AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig);
 @NgModule({
     declarations: [
-
+        PaymentComponent,
         MemberlistComponent
     ],
     imports: [
@@ -26,8 +26,7 @@ import { MemberlistComponent } from './index';
         BrowserModule
     ],
     exports: [
-
-        MemberlistComponent
+        MemberlistComponent,
     ]
 })
 export class MemberlistModule {

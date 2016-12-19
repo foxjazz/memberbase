@@ -1,37 +1,46 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import {Member, IPayment} from './member.model';
+import {PaymentComponent} from './payment.component';
+
 //import { AngularFire, FirebaseListObservable } from 'angularfire2';
 
 @Component({
 
     selector: 'as-memberlist',
+    providers: [PaymentComponent],
     templateUrl: 'app/members/memberlist.html',
     styleUrls: ['app/members/member.css']
 })
 export class MemberlistComponent implements OnInit, OnDestroy{
-    public member: Member;
+    member: Member;
     payments: Array<IPayment>;
+    memberlist: Array<Member>;
+    mode = "Add";
+    isactive: string;
     private list: Member[];
     private showCompleted: Boolean;
-    memberlist: Array<Member>;
+
   //  memberlist: FirebaseListObservable<any[]>;
     constructor(/*af: AngularFire*/) {
         this.showCompleted = true;
 
-
-
     //    this.memberlist = af.database.list('./members');
     }
+    getPayments(): Array<IPayment>{
+        return this.payments;
+    }
 
-    addMember() {
+    submitForm() {
         //let m = new Member('',false);
-        this.member = new Member('',false);
-
-        this.memberlist.push(this.member);
-        this.member.key = this.memberlist.length;
-        this.member.clear();
+        //
+        if(this.mode === "Add") {
+            this.memberlist.push(this.member);
+            this.member.key = this.memberlist.length;
+        }
+        this.member = new Member('', false);
         localStorage.setItem('members', JSON.stringify(this.memberlist));
+        this.mode = "Add";
     }
 
     delMember(i: number) {
@@ -49,6 +58,8 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         {
             //this.member = new Member('',false,this.memberlist);
             this.member = al;
+
+            this.mode = "Save";
             //localStorage.setItem('members', JSON.stringify(this.memberlist));
 
         }
@@ -56,7 +67,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         {
             if(al.payments == null || al.payments.length == 0)
             {
-                let newpay = {receivedDate: new Date(), amount: 0, type: "cash"};
+                let newpay = {receivedDate: new Date(), amount: 0, type: "cash", targetDate: new Date(), active: false};
                 al.payments.push(newpay);
             }
             this.payments = al.payments;
@@ -68,33 +79,22 @@ export class MemberlistComponent implements OnInit, OnDestroy{
 
 
     }
-    public onPaymentTable(pay :IPayment){
-        if(event.target["id"]=== "Add")
-        {
-            let newpay = {receivedDate: new Date(), amount: 0, type: "cash"};
-            this.payments.push(newpay);
-        }
-        else if(event.target["id"]==="Delete")
-        {
-            let index = this.payments.indexOf(pay, 0);
-            if (index > -1) {
-                this.payments.splice(index, 1);
-            }
-        }
-    }
+
     ngOnDestroy(){
         localStorage.setItem('members', JSON.stringify(this.memberlist));
     }
     ngOnInit(){
         let res: string;
         res = localStorage.getItem('members');
-        if(res != null && res.indexOf('email') > 0) {
+        if(res != null && res.indexOf('phone') > 0) {
             this.memberlist = JSON.parse(res);
             this.member = this.memberlist[0];
+
         }
         else{
             this.memberlist = new Array<Member>();
             this.member = new Member('',false);
+
         }
 
 

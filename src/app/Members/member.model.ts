@@ -3,6 +3,8 @@ export interface IPayment {
     receivedDate: Date;
     amount: number;
     type: string;
+    active: boolean;
+    targetDate: Date;
 }
 export class ExtendedMember{
     firstName: string;
@@ -30,6 +32,7 @@ export class Member {
     joinedDate: Date;
     completed: boolean;
     active: boolean;
+    frequency: number;
     durationmonths: number;
     targetDate: Date;
     ExtendedMembers: Array<ExtendedMember>;
@@ -45,18 +48,15 @@ export class Member {
         this.completed = done;
         this.joinedDate = new Date();
         this.payments = new Array<IPayment>();
+        this.frequency = 12;  //frequency of payments in months
         // members.push(this);
         // this.key = members.length;
     }
     public delete(){
             this.active = false;
+
     }
-    public isActive(): string{
-        if(this.active)
-            return "yes";
-        else
-            return "no";
-    }
+
     public clear() {
         this.email = '';
         this.firstName = '';
