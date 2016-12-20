@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import {Member, IPayment} from './member.model';
+import {Member, IPayment, ExtendedMember} from './member.model';
 import {PaymentComponent} from './payment.component';
 
 
@@ -16,6 +16,7 @@ import {PaymentComponent} from './payment.component';
 export class MemberlistComponent implements OnInit, OnDestroy{
     member: Member;
     payments: Array<IPayment>;
+    ems: Array<ExtendedMember>;
     memberlist: Array<Member>;
     mode = "Add";
     membercount: number;
@@ -33,6 +34,12 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         if(this.payments == null)
             this.payments = new Array<IPayment>();
         return this.payments;
+    }
+
+    getExtended(): Array<ExtendedMember>{
+        if(this.ems == null)
+            this.ems = new Array<ExtendedMember>();
+        return this.ems;
     }
 
     submitForm() {
