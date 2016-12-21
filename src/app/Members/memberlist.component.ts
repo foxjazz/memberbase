@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import {Member, IPayment, ExtendedMember} from './member.model';
 import {PaymentComponent} from './payment.component';
+import {ActivatedRoute, Params, Router}   from '@angular/router';
 
 
 //import { AngularFire, FirebaseListObservable } from 'angularfire2';
@@ -20,6 +21,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     memberlist: Array<Member>;
     mode = "Add";
     membercount: number;
+    router: Router;
     isactive: string;
     activeFilter: boolean;
     firstNameFilter: string;
@@ -28,7 +30,8 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     private showCompleted: Boolean;
 
   //  memberlist: FirebaseListObservable<any[]>;
-    constructor(/*af: AngularFire*/) {
+    constructor(private r: Router) {
+        this.router = r;
         this.showCompleted = true;
         this.membercount = 0;
         this.firstNameFilter = "";
@@ -92,6 +95,10 @@ export class MemberlistComponent implements OnInit, OnDestroy{
 
         else if (event.target["id"]==="Remove"){
             al.delete();
+        }
+        if(event.target["id"]==="ems"){
+            //redirectTo: '/dashboard'
+            this.router.navigate(['/extendedMembers', al]);
         }
 
 

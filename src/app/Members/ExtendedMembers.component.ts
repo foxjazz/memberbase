@@ -5,7 +5,7 @@ import {ExtendedMember} from './member.model';
 
 @Component({
 
-    selector: 'as-am',
+    selector: 'as-em',
     templateUrl: 'app/members/ExtendedMembers.html',
     styleUrls: ['app/members/member.css']
 })

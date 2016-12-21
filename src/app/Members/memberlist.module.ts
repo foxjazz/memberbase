@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MemberlistComponent } from './index';
 import { PaymentComponent } from './payment.component';
-import {ExtendedMembersComponent} from "./extendedmembers.component";
+import {ExtendedMembersComponent} from "./ExtendedMembers.component";
 import {FilterPipe} from "./filter.pipe";
  //import { AngularFireModule } from 'angularfire2';
  export const firebaseConfig = {
@@ -31,6 +31,7 @@ import {FilterPipe} from "./filter.pipe";
     ],
     exports: [
         MemberlistComponent,
+        ExtendedMembersComponent,
         FilterPipe
     ]
 })

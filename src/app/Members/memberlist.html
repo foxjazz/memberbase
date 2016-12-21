@@ -71,6 +71,7 @@
                     <th>add</th>
                     <th>remove</th>
                     <th>payments</th>
+                    <th>extended members</th>
 
                 </tr>
                 <tr  *ngFor="let al of (memberlist | asFilter:activeFilter:firstNameFilter:lastNameFilter);" [class.itemselected]="item === selectedItem" (click)="onUsingTable(al)">
@@ -82,6 +83,8 @@
                     <td class="price"><button id="Select" class="btn">Select</button></td>
                     <td class="price"><button id="Remove" class="btn">Remove</button></td>
                     <td class="price"><button id="Payments" class="btn">Payments</button></td>
+                    <td class="price"><button id="ems" class="btn">extended members</button></td>
+                    <!--<td class="price"><a [routerLink]="['/ems', al]"> extended members</a></td>-->
                 </tr>
             </table>
             <!--<ul class="list-group">
