@@ -7,6 +7,8 @@
     background-color: #1d2528;
     color: lightgreen;
     font-size: large;
+    min-height: 20px;
+    min-width: 50px;
 }
 .badge:hover {
     background-color: orangered;

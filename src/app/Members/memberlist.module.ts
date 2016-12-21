@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MemberlistComponent } from './index';
 import { PaymentComponent } from './payment.component';
 import {ExtendedMembersComponent} from "./extendedmembers.component";
+import {FilterPipe} from "./filter.pipe";
  //import { AngularFireModule } from 'angularfire2';
  export const firebaseConfig = {
  apiKey: 'AIzaSyD3UeQygrWX3JWL3o9DWe8c-7r-rF1KD30',
@@ -21,7 +22,8 @@ import {ExtendedMembersComponent} from "./extendedmembers.component";
     declarations: [
         PaymentComponent,
         ExtendedMembersComponent,
-        MemberlistComponent
+        MemberlistComponent,
+        FilterPipe
     ],
     imports: [
         FormsModule,
@@ -29,6 +31,7 @@ import {ExtendedMembersComponent} from "./extendedmembers.component";
     ],
     exports: [
         MemberlistComponent,
+        FilterPipe
     ]
 })
 export class MemberlistModule {

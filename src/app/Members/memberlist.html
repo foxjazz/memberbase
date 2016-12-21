@@ -41,9 +41,11 @@
                     <div class="form-inline">
                         <label for="ph">Phone</label>
                         <input [(ngModel)]="member.phone" id="ph" name="phone" type="text" class="form-control" size="20">
+                        <label for="active">Active</label>
+                        <input [(ngModel)]="member.active" id="active" name="active" type="checkbox" class="form-control" size="5">
                     </div>
                     <div class="submit">
-                    <button type="submit" class="submit">{{mode}}</button>
+                    <button type="submit" class="btn-default">{{mode}}</button>
                     </div>
                     <!--<label><input type="checkbox" [(ngModel)]="showCompleted" name="memberCompleted"> show completed</label>-->
                 </form>
@@ -52,6 +54,14 @@
     </div>
     <div class="row">
         <div class="col-md-5">
+            <div>
+                <label for="selActive">is active</label>
+                <input type="checkbox" id="selActive" name="selActive" value="false" [(ngModel)]="activeFilter">
+                <label for="selfirstName">first name</label>
+                <input type="text" id="selfirstName" name="selfirstName" value="" size="8" >
+                <label for="sellastName">last name</label>
+                <input type="text" id="sellastName" name="sellastName" value="" size="8">
+            </div>
             <table class="itemtable">
                 <tr>
                     <th>first name</th>
@@ -63,7 +73,7 @@
                     <th>payments</th>
 
                 </tr>
-                <tr  *ngFor="let al of memberlist" [class.itemselected]="item === selectedItem" (click)="onUsingTable(al)">
+                <tr  *ngFor="let al of (memberlist | asFilter:activeFilter:firstNameFilter:lastNameFilter);" [class.itemselected]="item === selectedItem" (click)="onUsingTable(al)">
 
                     <td> {{al.firstName}} </td>
                     <td> {{al.lastName}} </td>

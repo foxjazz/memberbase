@@ -21,6 +21,9 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     mode = "Add";
     membercount: number;
     isactive: string;
+    activeFilter: boolean;
+    firstNameFilter: string;
+    lastNameFilter: string;
     private list: Member[];
     private showCompleted: Boolean;
 
@@ -28,6 +31,9 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     constructor(/*af: AngularFire*/) {
         this.showCompleted = true;
         this.membercount = 0;
+        this.firstNameFilter = "";
+        this.lastNameFilter="";
+        this.activeFilter= false;
     //    this.memberlist = af.database.list('./members');
     }
     getPayments(): Array<IPayment>{

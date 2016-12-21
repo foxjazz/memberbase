@@ -4,5 +4,5 @@
 export * from './member.model';
 export * from './memberlist.component';
 export * from './memberlist.routes';
-
+export * from './filter.pipe';
 export * from './memberlist.module';
