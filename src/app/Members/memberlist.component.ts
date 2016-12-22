@@ -98,7 +98,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
         if(event.target["id"]==="ems"){
             //redirectTo: '/dashboard'
-            this.router.navigate(['/extendedMembers', al]);
+            this.router.navigate(['/extendedMembers', al.ExtendedMembers]);
         }
 
 

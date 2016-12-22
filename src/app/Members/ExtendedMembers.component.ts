@@ -10,6 +10,7 @@ import {ExtendedMember} from './member.model';
     styleUrls: ['app/members/member.css']
 })
 export class ExtendedMembersComponent {
+
     constructor(){
         if(this.ems == null || this.ems.length === 0){
             this.em = new ExtendedMember();
@@ -17,28 +18,38 @@ export class ExtendedMembersComponent {
         else {
             this.em = this.ems[0];
         }
+        this.mode = "Add";
 
 
     }
     @Input()
     ems: Array<ExtendedMember>;
     em: ExtendedMember;
-    public addPayment(p: ExtendedMember){
-        this.ems.push(p);
+    mode: string;
+    submitForm() {
+        //let m = new Member('',false);
+        //
+        if(this.mode === "Add") {
+            this.ems.push(this.em);
+        }
+        this.em = new ExtendedMember();
+        this.mode = "Add";
     }
-    public onPaymentTable(em :ExtendedMember){
-        if(event.target["id"]=== "Add")
-        {
-            this.ems.push(new ExtendedMember());
+    delMember(i: number) {
+        let index = i;
+        if (index > -1) {
+            this.ems.splice(index, 1);
         }
-        else if(event.target["id"]==="Delete")
-        {
-            let index = this.ems.indexOf(em, 0);
-            if (index > -1) {
-                this.ems.splice(index, 1);
-            }
-        }
+    }
+    public onUsingTable ( al: ExtendedMember) {
+        if (event.target["id"] === "Select") {
+            //this.member = new Member('',false,this.memberlist);
+            this.em = al;
 
+            this.mode = "Save";
+            //localStorage.setItem('members', JSON.stringify(this.memberlist));
+
+        }
     }
 
 }
