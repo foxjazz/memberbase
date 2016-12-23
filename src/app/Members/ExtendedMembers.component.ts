@@ -1,7 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
-import {ExtendedMember} from './member.model';
-
+import {ExtendedMember, Member} from './member.model';
+import {ActivatedRoute, Params, Router}   from '@angular/router';
+import {isNullOrUndefined} from "util";
 
 @Component({
 
@@ -9,9 +10,9 @@ import {ExtendedMember} from './member.model';
     templateUrl: 'app/members/ExtendedMembers.html',
     styleUrls: ['app/members/member.css']
 })
-export class ExtendedMembersComponent {
+export class ExtendedMembersComponent implements OnInit {
 
-    constructor(){
+    constructor(r: Router){
         if(this.ems == null || this.ems.length === 0){
             this.em = new ExtendedMember();
         }
@@ -19,10 +20,11 @@ export class ExtendedMembersComponent {
             this.em = this.ems[0];
         }
         this.mode = "Add";
-
-
+        this.router = r;
     }
     @Input()
+    member: Member;
+    router: Router;
     ems: Array<ExtendedMember>;
     em: ExtendedMember;
     mode: string;
@@ -50,8 +52,31 @@ export class ExtendedMembersComponent {
             //localStorage.setItem('members', JSON.stringify(this.memberlist));
 
         }
+        if (event.target["id"] === "Remove") {
+            for(let i = 0; i < this.ems.length; i++){
+                if(this.ems[i] === al) {
+                    this.delMember(i);
+                    return;
+                }
+            }
+        }
     }
+    saveChanges(){
+        console.log("clicked save");
 
+        this.router.navigate(['/memberlist']);
+    }
+    ngOnInit(){
+        if(this.member === undefined) {
+            console.log("input is not set yet, member is undefined");
+            return;
+        }
+        if(this.member.ExtendedMembers == null)
+        {
+            this.member.ExtendedMembers = new Array<ExtendedMember>();
+        }
+            this.ems = this.member.ExtendedMembers;
+    }
 }
 /**
  * Created by fox21 on 12/19/2016.

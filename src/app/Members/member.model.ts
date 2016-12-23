@@ -19,7 +19,8 @@ export class ExtendedMember{
 
 export class Member {
 
-    key: number;
+    index: number;
+    uuid: string;
     firstName: string;
     lastName: string;
     phone: string;

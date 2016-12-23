@@ -56,7 +56,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         //
         if(this.mode === "Add") {
             this.memberlist.push(this.member);
-            this.member.key = this.memberlist.length;
+            this.member.index = this.memberlist.length;
         }
         this.member = new Member('', false);
         localStorage.setItem('members', JSON.stringify(this.memberlist));
@@ -98,7 +98,7 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
         if(event.target["id"]==="ems"){
             //redirectTo: '/dashboard'
-            this.router.navigate(['/extendedMembers', al.ExtendedMembers]);
+            this.router.navigate(['/extendedMembers', al]);
         }
 
 
