@@ -42,17 +42,13 @@ export class Member {
     completed: boolean;
     active: boolean;
     frequency: number;
+    skills: string;
     durationmonths: number;
     targetDate: Date;
     Description: string;
     Notes: string;
     ExtendedMembers: Array<ExtendedMember>;
     payments: Array<IPayment>;
-/*
-    static clone(member: Member): Member {
-        return new Member(member.name, member.done);
-    }
-*/
 
     constructor(email: string, done = false) {
         this.email = email;

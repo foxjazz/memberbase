@@ -48,7 +48,7 @@ export class MaintenanceComponent implements OnInit {
                     for(let p of res2.payments)
                     {
                         let pay: IPayment;
-                        pay = {receivedDate: p.receivedDate, amount: p.amount, type: '', active: false, targetDate: undefined}
+                        pay = {receivedDate: p.receivedDate, amount: p.amount, type: '', active: false, targetDate: undefined};
                         m.payments.push(pay);
                     }
                     this.memberlist.push(m);

@@ -60,9 +60,15 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         if(this.mode === "Add") {
             this.memberlist.push(this.member);
             this.member.index = this.memberlist.length;
+            let d = new Date();
+            let id = d.toString();
+            this.memservice.putDoc(id,JSON.stringify(this.member));
+        }
+        else
+        {
+            this.memservice.putDoc(this.member._id,JSON.stringify(this.member));
         }
         this.member = new Member('', false);
-        localStorage.setItem('members', JSON.stringify(this.memberlist));
         this.mode = "Add";
     }
 
@@ -70,20 +76,13 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         let res: string;
         this.memberlist[i].delete();
 
-        //let m = null;
-        /*let m = memberlist[i];
-        this.memberlist.remove(memberlist[i].email)*/
-
     }
 
     public onUsingTable ( al: Member) {
         if(event.target["id"] === "Select")
         {
-            //this.member = new Member('',false,this.memberlist);
             this.member = al;
-
             this.mode = "Save";
-            //localStorage.setItem('members', JSON.stringify(this.memberlist));
 
         }
         if(event.target["id"] === "Payments")
