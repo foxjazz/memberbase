@@ -1,4 +1,12 @@
 
+export interface keyid{
+    id: string; key: string; value: any;
+}
+export interface AllIds{
+    rows: Array<keyid>;
+
+}
+
 export interface IPayment {
     receivedDate: Date;
     amount: number;
@@ -20,7 +28,7 @@ export class ExtendedMember{
 export class Member {
 
     index: number;
-    uuid: string;
+    _id: string;
     firstName: string;
     lastName: string;
     phone: string;
@@ -36,6 +44,8 @@ export class Member {
     frequency: number;
     durationmonths: number;
     targetDate: Date;
+    Description: string;
+    Notes: string;
     ExtendedMembers: Array<ExtendedMember>;
     payments: Array<IPayment>;
 /*

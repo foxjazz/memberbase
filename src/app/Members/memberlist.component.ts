@@ -1,8 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import {Member, IPayment, ExtendedMember} from './member.model';
+import {Member, IPayment, ExtendedMember, AllIds} from './member.model';
 import {PaymentComponent} from './payment.component';
 import {ActivatedRoute, Params, Router}   from '@angular/router';
+import {MemberService} from "./member.service";
 
 
 //import { AngularFire, FirebaseListObservable } from 'angularfire2';
@@ -10,7 +11,7 @@ import {ActivatedRoute, Params, Router}   from '@angular/router';
 @Component({
 
     selector: 'as-memberlist',
-    providers: [PaymentComponent],
+    providers: [MemberService,PaymentComponent],
     templateUrl: 'app/members/memberlist.html',
     styleUrls: ['app/members/member.css']
 })
@@ -27,11 +28,13 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     firstNameFilter: string;
     lastNameFilter: string;
     private list: Member[];
+    private memservice: MemberService;
     private showCompleted: Boolean;
 
   //  memberlist: FirebaseListObservable<any[]>;
-    constructor(private r: Router) {
+    constructor(private r: Router, private ms: MemberService) {
         this.router = r;
+        this.memservice  = ms;
         this.showCompleted = true;
         this.membercount = 0;
         this.firstNameFilter = "";
@@ -105,10 +108,25 @@ export class MemberlistComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy(){
-        localStorage.setItem('members', JSON.stringify(this.memberlist));
+        //localStorage.setItem('members', JSON.stringify(this.memberlist));
     }
     ngOnInit(){
         let res: string;
+        //Here we do the initial call to get all of the id's from the database.
+        //we are making the assumption that the data is in  a format we can use. validation is not yet implemented
+        this.memberlist = new Array<Member>();
+        this.memservice.getAllDocs().subscribe(r1 => {
+
+            for(let nn of r1.rows)
+            {
+                this.memservice.getDoc(nn.id).subscribe(res2 =>
+                {
+                    this.memberlist.push(res2);
+                });
+                console.log(nn.id);
+            }
+        });
+/*
         res = localStorage.getItem('members');
         if(res != null && res.indexOf('phone') > 0) {
             this.memberlist = JSON.parse(res);
@@ -120,6 +138,10 @@ export class MemberlistComponent implements OnInit, OnDestroy{
             this.member = new Member('',false);
 
         }
+       */
+        this.member = new Member('',false);
+        let a = new Member('',false);
+        this.memberlist.push(a);
         this.membercount = this.memberlist.length;
 
 
