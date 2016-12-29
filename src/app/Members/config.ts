@@ -1,6 +1,7 @@
 export let config = {
-    test: 'http://74.208.129.62:5984/members/',
+    test: 'https://74.208.129.62:6984/members/',
     http: 'http://',
+    joesystem: 'http://foxjazz:jackofall2@localhost:5984/members/',
     testuri: 'localhost:5984/members/',
     prod: '',
     db:'members',

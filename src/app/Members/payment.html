@@ -11,7 +11,9 @@
             <input required [(ngModel)]="pay.type" id="typ" name="type" type="text" class="form-control" size="10">
 
         </div>
-        <button type="submit" class="btn btn-primary">{{mode}}</button>
+        <div class="submit">
+            <button type="submit" class="btn-custom">{{mode}}</button>
+        </div>
 
     </form>
 </div>
@@ -30,9 +32,10 @@
             <tr  *ngFor="let pay of payments" [class.itemselected]="item === selectedItem" (click)="onPaymentTable(pay)">
 
                 <td> {{pay.receivedDate}} </td>
-                <td> ${{pay.amount}} <input type="number" name="amount"></td>
+                <td> ${{pay.amount}}</td>
 
                 <td class="makeroom">  </td>
+                <td class="price"><button id="Select" class="btn">Select</button></td>
                 <td class="price"><button id="add" class="btn">Add</button></td>
                 <td class="price"><button id="delete" class="btn">Delete</button></td>
 

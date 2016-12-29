@@ -16,8 +16,11 @@ export class FilterPipe implements PipeTransform {
         {
             let mems2 = new Array<Member>();
             for(let al of newmems){
-                if(al.firstName.indexOf(firstName) > -1 )
-                    mems2.push(al);
+                if(al.firstName != null && al.firstName.length > 0) {
+                    if(al.firstName.indexOf(firstName) === 0)
+                        mems2.push(al);
+
+                }
             }
             newmems = mems2;
         }
@@ -25,8 +28,11 @@ export class FilterPipe implements PipeTransform {
         {
             let mems2 = new Array<Member>();
             for(let al of newmems){
-                if(al.lastName.indexOf(lastName) > -1 )
-                    mems2.push(al);
+                if(al.lastName != null && al.lastName.length > 0) {
+                    if(al.lastName.indexOf(lastName) === 0)
+                        mems2.push(al);
+
+                }
             }
             newmems = mems2;
         }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {IPayment} from './member.model';
 //import { AngularFire, FirebaseListObservable } from 'angularfire2';
@@ -9,7 +9,7 @@ import {IPayment} from './member.model';
     templateUrl: 'app/members/payment.html',
     styleUrls: ['app/members/member.css']
 })
-export class PaymentComponent {
+export class PaymentComponent implements OnInit {
     constructor(){
         if(this.payments == null || this.payments.length === 0){
             this.pay =  {receivedDate: new Date(), amount: 0, type: "cash", targetDate: new Date(), active: false};
@@ -23,10 +23,25 @@ export class PaymentComponent {
     @Input()
     payments: Array<IPayment>;
     pay: IPayment;
+    mode: string;
+    submitForm() {
+        //let m = new Member('',false);
+        //
+        if(this.mode === "Add") {
+            this.payments.push(this.pay);
+        }
+        this.pay = {receivedDate: new Date(), amount: 0, type: "cash", targetDate: new Date(), active: false};
+        this.mode = "Add";
+    }
     public addPayment(p: IPayment){
         this.payments.push(p);
     }
     public onPaymentTable(pay :IPayment){
+        if(event.target["id"]=== "Select")
+        {
+            this.mode = "Save";
+            this.pay = pay;
+        }
         if(event.target["id"]=== "Add")
         {
             let newpay = {receivedDate: new Date(), amount: 0, type: "cash", targetDate: new Date(), active: false};
@@ -41,7 +56,9 @@ export class PaymentComponent {
         }
 
     }
-
+    ngOnInit(){
+        this.mode = "Add";
+    }
 }
 
 

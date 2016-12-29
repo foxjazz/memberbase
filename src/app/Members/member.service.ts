@@ -74,7 +74,7 @@ export class MemberService
     public putDoc(id: string, val: string){
 
         let uri = config.http + config.auth + config.testuri + id;
-        let b  = 'http://' + config.IP + ':5984/members/' + id;
+        let b  = 'https://' + config.IP + ':6984/members/' + id;
         //let uri = config.http +  config.testuri + id;
 
         this.save(b,val).subscribe(data => {
