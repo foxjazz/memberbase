@@ -38,7 +38,7 @@ describe('AppComponent', () => {
         });
     });
 
-    it('should have title Hello world', async(() => {
+   /* it('should have title Hello world', async(() => {
         TestBed.compileComponents().then(() => {
             let fixture: ComponentFixture<AppComponent>;
             fixture = TestBed.createComponent(AppComponent);
@@ -49,5 +49,5 @@ describe('AppComponent', () => {
             // TODO: find a way to compile the routed component
             // expect(compiled.querySelector('div.title')).toMatch('Hello world');
         });
-    }));
+    }));*/
 });
