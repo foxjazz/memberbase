@@ -3,16 +3,20 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ExtendedMember, Member} from './member.model';
 import {ActivatedRoute, Params, Router}   from '@angular/router';
 import {isNullOrUndefined} from "util";
+import {MemberService} from "./member.service";
 
 @Component({
 
     selector: 'as-em',
+    providers: [MemberService],
     templateUrl: 'app/members/ExtendedMembers.html',
     styleUrls: ['app/members/member.css']
 })
 export class ExtendedMembersComponent implements OnInit {
 
-    constructor(r: Router){
+    private msvs: MemberService;
+    constructor(r: Router, ms: MemberService){
+        this.msvs =ms;
         if(this.ems == null || this.ems.length === 0){
             this.em = new ExtendedMember();
         }
@@ -22,7 +26,8 @@ export class ExtendedMembersComponent implements OnInit {
         this.mode = "Add";
         this.router = r;
     }
-    @Input()
+/*    @Input()
+    action:string;*/
     member: Member;
     router: Router;
     ems: Array<ExtendedMember>;
@@ -37,6 +42,7 @@ export class ExtendedMembersComponent implements OnInit {
         this.em = new ExtendedMember();
         this.mode = "Add";
     }
+
     delMember(i: number) {
         let index = i;
         if (index > -1) {
@@ -53,29 +59,47 @@ export class ExtendedMembersComponent implements OnInit {
 
         }
         if (event.target["id"] === "Remove") {
+            this.em = new ExtendedMember();
+            this.mode = "Add";
             for(let i = 0; i < this.ems.length; i++){
                 if(this.ems[i] === al) {
                     this.delMember(i);
                     return;
                 }
             }
+
         }
     }
     saveChanges(){
         console.log("clicked save");
-
+        this.msvs.putDoc(this.member._id,JSON.stringify(this.member));
         this.router.navigate(['/memberlist']);
     }
     ngOnInit(){
+/*
+        if(this.action === 'member')
+        {
+            let   res = localStorage.getItem('member');
+            this.member = JSON.parse(res);
+        }
+*/
+        let   res = localStorage.getItem('member');
+        this.member = JSON.parse(res);
+        /*
         if(this.member === undefined) {
             console.log("input is not set yet, member is undefined");
             return;
         }
-        if(this.member.ExtendedMembers == null)
+*/
+        if(this.member.ExtendedMembers == null || this.member.ExtendedMembers.length === 0)
         {
             this.member.ExtendedMembers = new Array<ExtendedMember>();
         }
-            this.ems = this.member.ExtendedMembers;
+
+        this.ems = this.member.ExtendedMembers;
+        //let newMember = new ExtendedMember();
+        //this.ems.push(newMember);
+        this.em = new ExtendedMember();
     }
 }
 /**

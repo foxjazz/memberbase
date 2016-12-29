@@ -100,7 +100,9 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
         if(event.target["id"]==="ems"){
             //redirectTo: '/dashboard'
-            this.router.navigate(['/extendedMembers', al]);
+            localStorage.setItem('member',JSON.stringify(al));
+            this.router.navigate(['/extendedMembers']);
+            //this.router.navigate(['/extendedMembers', 'member']);
         }
 
 
@@ -113,24 +115,24 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         let res: string;
         //Here we do the initial call to get all of the id's from the database.
         //we are making the assumption that the data is in  a format we can use. validation is not yet implemented
-        this.memberlist = new Array<Member>();
-        this.memservice.getAllDocs().subscribe(r1 => {
 
-            for(let nn of r1.rows)
-            {
-                this.memservice.getDoc(nn.id).subscribe(res2 =>
-                {
-                    this.memberlist.push(res2);
-                });
+ this.memberlist = new Array<Member>();
+ this.memservice.getAllDocs().subscribe(r1 => {
+
+     for(let nn of r1.rows)
+     {
+         this.memservice.getDoc(nn.id).subscribe(res2 =>
+         {
+                this.memberlist.push(res2);
+         });
                 console.log(nn.id);
-            }
-        });
-/*
+         }
+     });
+     /*
         res = localStorage.getItem('members');
         if(res != null && res.indexOf('phone') > 0) {
             this.memberlist = JSON.parse(res);
             this.member = this.memberlist[0];
-
         }
         else{
             this.memberlist = new Array<Member>();
@@ -139,8 +141,6 @@ export class MemberlistComponent implements OnInit, OnDestroy{
         }
        */
         this.member = new Member('',false);
-        let a = new Member('',false);
-        this.memberlist.push(a);
         this.membercount = this.memberlist.length;
 
 

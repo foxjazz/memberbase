@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform {
         if(active) {
             newmems = filter(mems, {active});
         }
-        if(firstName.length > 0)
+        if(firstName != null && firstName.length > 0)
         {
             let mems2 = new Array<Member>();
             for(let al of newmems){
@@ -21,7 +21,7 @@ export class FilterPipe implements PipeTransform {
             }
             newmems = mems2;
         }
-        if(lastName.length > 0)
+        if(lastName != null && lastName.length > 0)
         {
             let mems2 = new Array<Member>();
             for(let al of newmems){

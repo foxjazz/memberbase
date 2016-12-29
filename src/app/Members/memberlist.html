@@ -51,7 +51,8 @@
                         <input [(ngModel)]="member.skills" id="skills" name="skills" type="texxt"class="form-control" size="40">
                     </div>
                     <div class="submit">
-                    <button type="submit" class="btn-default">{{mode}}</button>
+                        <button type="submit" class="btn-default">{{mode}}</button>
+                        <label>first Name: {{firstName}}</label>
                     </div>
                     <!--<label><input type="checkbox" [(ngModel)]="showCompleted" name="memberCompleted"> show completed</label>-->
                 </form>
@@ -64,9 +65,9 @@
                 <label for="selActive">is active</label>
                 <input type="checkbox" id="selActive" name="selActive" value="false" [(ngModel)]="activeFilter">
                 <label for="selfirstName">first name</label>
-                <input type="text" id="selfirstName" name="selfirstName" value="" size="8" >
+                <input type="text" id="selfirstName" name="selfirstName" value="" size="8" [(ngModel)]="firstNameFilter">
                 <label for="sellastName">last name</label>
-                <input type="text" id="sellastName" name="sellastName" value="" size="8">
+                <input type="text" id="sellastName" name="sellastName" value="" size="8" [(ngModel)]="lastNameFilter">
             </div>
             <table class="itemtable">
                 <tr>
